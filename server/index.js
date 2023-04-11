@@ -9,44 +9,61 @@ app.use(cors());
 app.use(express.json());
 
 
-const mysql = require('mysql')
+const mysql = require('mysql');
 
 const db = mysql.createConnection({
 	host: "localhost",
 	user: "root",
 	password: "Abhay@78",
-	database:"users" 
-})
+	database:"credentialsdb" 
+});
 
-app.post('/register', (request, response) => {
-	const name = request.body.name;
-	const email = request.body.email;
-	const password = request.body.password;
+// db.getConnection( (err, connection) => {
+// 	if (err) throw err;
 
-	db.query("INSERT INTO users (name, email, password) VALUES (?, ?, ?)", [name, email, password],
+// 	const name = 'abc';
+// 	const email = 'xyz@email.com';
+// 	const password = '123';
+
+// 	const qry = "INSERT INTO users (name, email, password,created_at) VALUES (?, ?, ?,NOW())";
+
+// 	connection.query(qry, [name, email, password], (err, result) => {
+// 		connection.release();
+// 		if(err) throw err;
+// 		console.log(result);
+// 	});
+// });
+
+app.post('/register', (req, res) => {
+	const name = req.body.name;
+	const email = req.body.email;
+	const password = req.body.password;
+
+	db.query("INSERT INTO users (name, email, password,created_at) VALUES (?, ?, ?,NOW())", [name, email, password],
 		(err, result) => {
 			if(result){
-				response.send(result);
+				res.send(result);
+				
 			}else{
-				response.send({message:"Enter Valid Details"})
+				res.send(err);
 			}
 		})
 });
 
-app.post('/login', (request, response) => {
-	// const name = request.body.name;
-	const email = request.body.email;
-	const password = request.body.password;
-
+app.post('/login', (req, res) => {
+	// const name = req.body.name;
+	const email = req.body.email;
+	const password = req.body.password;
+	console.log(email);
 	db.query(" SELECT * FROM users WHERE email = ? AND password = ?", [email, password],
 		(err, result) => {
 			if(err){
-				request.setEncoding({err: err});
+				req.setEncoding({err: err});
 			}else{
 				if(result.length > 0){
-					response.send(result);
+					res.send(result);
 				}else{
-					response.send({message:"Incorrect Email or Password!"})
+					res.send({message:"Incorrect Email or Password!"})
 				}
 			}
 		})
@@ -55,4 +72,4 @@ app.post('/login', (request, response) => {
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
-});
+});	

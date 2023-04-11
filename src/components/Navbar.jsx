@@ -7,7 +7,7 @@ const Navbar = () => {
 	const navigate = useNavigate();
 
 	return (
-		<div classname="navbar">
+		<div>
 		<div className="App">BookAmigo</div>
 			<div className="navbarContainer">
 				

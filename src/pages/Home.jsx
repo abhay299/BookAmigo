@@ -1,9 +1,9 @@
 import "../App.css"
-import React, { useState } from "react";
+
 import Navbar from "../components/Navbar";
 import Content from "../components/Content";
-import Register from "./Register";
-import Login from "./Login";
+// import Register from "./Register";
+// import Login from "./Login";
 
 const Home = () => {
 
@@ -18,9 +18,6 @@ const Home = () => {
 			<div className="homeContainer">
 				<Content/>
 			</div>
-			{/* {
-				currentForm === "login" ? <Login/> : <Register/>
-			} */}
 		</div>
 	)
 }

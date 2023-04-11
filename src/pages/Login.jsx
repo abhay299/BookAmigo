@@ -8,39 +8,41 @@ const Login = () => {
 
 
 	const [email, setEmail] = useState('');
-	const [pass, setPass] = useState('');
+	const [password, setPassword] = useState('');
 	const [loginStatus, setLoginStatus] = useState("");
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		
-		Axios.post("http://localhost:3001/register", {
+		Axios.post("http://localhost:3001/login", {
 			email : email, 
-			password : pass,
+			password : password,
 		}).then((response) => {
 			if(response.data.message) {
 				setLoginStatus(response.data.message);
+				console.log(response.data.message);
 			}else{
 				setLoginStatus(response.data[0].email);
+				console.log(response.data[0].email, response.data[0].password);
 			}
 		});
 	};
 
 	return (
 		<div className='login'>
-			<form onSubmit={handleSubmit} className='form'>
+			<form className='form'>
 			<header>Create an account</header>
-				<label for="email">email:</label>
+				<label htmlFor="email">email:</label>
 				<input type='email' placeholder='abc123@example.com' id="email" name="email"
 					value={email} onChange={ (e) => setEmail(e.target.value)} required
 				/>
 
-				<label for="password">password:</label>
+				<label htmlFor="password">password:</label>
 				<input type='password' placeholder='password' id="password" name="password"
-					value={pass} onChange={ (e) => {setPass(e.target.value)}} required
+					value={password} onChange={ (e) => {setPassword(e.target.value)}} required
 				/>
 
-				<button type='submit' onClick={ () => navigate('/')}>Log In</button>
+				<button type='submit' onClick={handleSubmit}>Log In</button>
 
 				<div>Don't have an account?</div>
 			<button onClick={ () => navigate('/register')}>Register</button>

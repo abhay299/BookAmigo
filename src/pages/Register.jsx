@@ -7,7 +7,7 @@ const Register = () => {
 	const navigate = useNavigate();
 
 	const [email, setEmail] = useState('');
-	const [pass, setPass] = useState('');
+	const [password, setPassword] = useState('');
 	const [name, setName] = useState('');
 	const [registerStatus, setRegisterStatus] = useState("");
 
@@ -16,15 +16,15 @@ const Register = () => {
 		Axios.post("http://localhost:3001/register", {
 			name : name,
 			email : email, 
-			password : pass,
+			password : password,
 		}).then((response) => {
 			if(response.data.message) {
 				setRegisterStatus(response.data.message);
 			}else{
 				setRegisterStatus("Account Created Succesfully!")
 			}
+			console.log(response.data.message);
 		});
-		navigate('/');
 	};
 
   return (
@@ -43,10 +43,12 @@ const Register = () => {
 
 				<label htmlFor="password">password :</label>
 				<input type='password' placeholder='Enter your password' id="password" name="password"
-					value={pass} onChange={ (e) => {setPass(e.target.value)}} required
+					value={password} onChange={ (e) => {setPassword(e.target.value)}} required
 				/>
 
-				<button type='submit' onClick={handleSubmit}>Submit</button>
+				<button type='submit' 
+				disabled={name.length < 3 || email.length < 3 || password.length < 3} 
+				onClick={handleSubmit}>Submit</button>
 		</form>
 			<span>Already have an account?</span>
 			<button onClick={ () => navigate('/login')}>Log In</button>
