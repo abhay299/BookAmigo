@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import Axios from 'axios';
-import { response } from 'express';
 
 const Register = () => {
 
@@ -25,14 +24,17 @@ const Register = () => {
 				setRegisterStatus("Account Created Succesfully!")
 			}
 		});
+		navigate('/');
 	};
 
   return (
 	<div>Register
-		<form onSubmit={handleSubmit}>
+		<form>
 
 				<label htmlFor='name'>Full name :</label>
-				<input value={name} name='name' id="name" placeholder='Enter your Full Name' required/>
+				<input type='text' value={name} name='name' id="name" placeholder='Enter your Full Name' 
+				onChange={ (e) => setName(e.target.value)} required
+				/>
 
 				<label htmlFor="email">email :</label>
 				<input type='email' placeholder='abc123@example.com' id="email" name="email"
@@ -44,7 +46,7 @@ const Register = () => {
 					value={pass} onChange={ (e) => {setPass(e.target.value)}} required
 				/>
 
-				<button type='submit' onClick={ () => navigate('/')}>Log In</button>
+				<button type='submit' onClick={handleSubmit}>Submit</button>
 		</form>
 			<span>Already have an account?</span>
 			<button onClick={ () => navigate('/login')}>Log In</button>

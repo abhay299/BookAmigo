@@ -23,7 +23,7 @@ const Login = () => {
 			}else{
 				setLoginStatus(response.data[0].email);
 			}
-		});	
+		});
 	};
 
 	return (
