@@ -104,18 +104,92 @@
   justify-content: center;
   height: 100vh;
   background-color: rgb(140, 214, 229);
+
 }
 
 .form {
+  text-align: center;
   color: white;
   background-color: #15172b;
   border-radius: 20px;
   box-sizing: border-box;
-  height: 300px;
+  height: 550px;
   padding: 20px;
-  width: 320px;
+  width: 325px;
+  background-image: url('https://images.unsplash.com/photo-1680925723180-ff3cb559c9b4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=1000&q=60');
 }
 
-.loginContainer {
-  height: 150px;
+.signup {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  width: 65%;
+  z-index: 5;
+  font-size: larger;
+  font-weight: 599;
+	
+}
+
+.inputContainer {
+  display: grid;
+  margin-top: 100px;
+  height: 100px;
+  width: 280px;
+}
+
+.input {
+  position: relative;
+  display: block;
+  margin-left: 2%;
+  margin-bottom: 10px;
+}
+
+.loginBtn {
+  margin-top: 8px;
+  width: 100px;
+  border-radius: 10px;
+  height: 30px;
+}
+
+.loginBtn:hover {
+  background-color: darkcyan;
+  color: whitesmoke;
+}
+
+.registerBtn {
+  margin-top: 8px;
+  width: 100px;
+  border-radius: 10px;
+  height: 30px;
+}
+
+.registerBtn:hover {
+  background-color: darkcyan;
+  color: whitesmoke;
+}
+
+.registerText {
+  position: relative;
+  margin-top: 30px;
+  font-weight: 500;
+  font-display: 20px;
+  text-decoration: underline;
+  color:snow;
+}
+
+button:disabled {
+  background-color: grey;
+  color: black;
+  cursor: not-allowed;
+}
+
+.submitBtn {
+  cursor: pointer;
+  background-color:limegreen;
+  color: whitesmoke;
+  margin-top: 8px;
+  width: 100px;
+  border-radius: 10px;
+  height: 30px;
 }

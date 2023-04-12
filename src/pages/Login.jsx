@@ -22,7 +22,7 @@ const Login = () => {
 				setLoginStatus(response.data.message);
 				console.log(response.data.message);
 			}else{
-				setLoginStatus(response.data[0].email);
+				setLoginStatus("Login Successful!");
 				console.log(response.data[0].email, response.data[0].password);
 			}
 		});
@@ -31,21 +31,24 @@ const Login = () => {
 	return (
 		<div className='login'>
 			<form className='form'>
-			<header>Create an account</header>
-				<label htmlFor="email">email:</label>
-				<input type='email' placeholder='abc123@example.com' id="email" name="email"
-					value={email} onChange={ (e) => setEmail(e.target.value)} required
-				/>
+				<header className='signup'>Sign In</header>
+					<div className='inputContainer'>
+						<label htmlFor="email" ></label>
+						<input type='email' className='input' placeholder='Email' id="email" name="email"
+							value={email} onChange={ (e) => setEmail(e.target.value)} required
+						/>
 
-				<label htmlFor="password">password:</label>
-				<input type='password' placeholder='password' id="password" name="password"
-					value={password} onChange={ (e) => {setPassword(e.target.value)}} required
-				/>
-
-				<button type='submit' onClick={handleSubmit}>Log In</button>
-
-				<div>Don't have an account?</div>
-			<button onClick={ () => navigate('/register')}>Register</button>
+						<label htmlFor="password" ></label>
+						<input type='password' className='input' placeholder='Password' id="password" name="password"
+							value={password} onChange={ (e) => {setPassword(e.target.value)}} required
+						/>
+					</div>
+					<button type='submit' className='loginBtn' onClick={handleSubmit}>Log In</button>
+					{/* <h1 style={{color: 'red', fontSize: '15px', textAlign: 'center', marginTop: '20px'}}>{loginStatus}</h1> */}
+					
+					<div className='registerText'>Don't have an account?</div>
+					<button className='registerBtn' onClick={ () => navigate('/register')}>Register</button>
+					
 			</form>
 			
 		</div>

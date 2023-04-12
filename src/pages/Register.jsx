@@ -28,30 +28,34 @@ const Register = () => {
 	};
 
   return (
-	<div>Register
-		<form>
+	<div className='login'>
+		<form className='form'>
+			<header className='signup'>Sign Up</header>
+				<div className='inputContainer'>
+					<label htmlFor='name'></label>
+					<input type='text' className='input' value={name} name='name' id="name" placeholder='Enter your Full Name' 
+					onChange={ (e) => setName(e.target.value)} required
+					/>
 
-				<label htmlFor='name'>Full name :</label>
-				<input type='text' value={name} name='name' id="name" placeholder='Enter your Full Name' 
-				onChange={ (e) => setName(e.target.value)} required
-				/>
+					<label htmlFor="email"></label>
+					<input type='email' className='input' placeholder='Enter your Email ID' id="email" name="email"
+						value={email} onChange={ (e) => setEmail(e.target.value)} required
+					/>
 
-				<label htmlFor="email">email :</label>
-				<input type='email' placeholder='abc123@example.com' id="email" name="email"
-					value={email} onChange={ (e) => setEmail(e.target.value)} required
-				/>
+					<label htmlFor="password"></label>
+					<input type='password' className='input' placeholder='Enter your Password' id="password" name="password"
+						value={password} onChange={ (e) => {setPassword(e.target.value)}} required
+					/>
+				</div>
 
-				<label htmlFor="password">password :</label>
-				<input type='password' placeholder='Enter your password' id="password" name="password"
-					value={password} onChange={ (e) => {setPassword(e.target.value)}} required
-				/>
-
-				<button type='submit' 
+				<button type='submit' className='submitBtn'
 				disabled={name.length < 3 || email.length < 3 || password.length < 3} 
 				onClick={handleSubmit}>Submit</button>
+
+				<div className='registerText'>Already have an account?</div>
+				<button className='registerBtn' onClick={ () => navigate('/login')}>Log In</button>
 		</form>
-			<span>Already have an account?</span>
-			<button onClick={ () => navigate('/login')}>Log In</button>
+			
 	</div>
   )
 };
