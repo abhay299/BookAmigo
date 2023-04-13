@@ -82,10 +82,10 @@ app.post('/login', (req, res) => {
 });
 
 app.get('/myBooking', (req, res) => {
-	connection.query("SELECT * FROM hotels;", (err, result, fields) => {
+	connection.query("SELECT * FROM hotels;", (err, result) => {
 		if(err) throw err;
 		res.send(result);
-		console.log(result)
+		// console.log(result)
 	});
 });
 
