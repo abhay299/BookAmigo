@@ -138,6 +138,13 @@
   width: 280px;
 }
 
+.inputSignupContainer {
+  display: grid;
+  margin-top: 100px;
+  height: 120px;
+  width: 280px;
+}
+
 .input {
   position: relative;
   display: block;
@@ -145,26 +152,26 @@
   margin-bottom: 10px;
 }
 
-.loginBtn {
+.signinBtn {
   margin-top: 8px;
   width: 100px;
   border-radius: 10px;
   height: 30px;
 }
 
-.loginBtn:hover {
+.signinBtn:hover {
   background-color: darkcyan;
   color: whitesmoke;
 }
 
-.registerBtn {
+.signupBtn {
   margin-top: 8px;
   width: 100px;
   border-radius: 10px;
   height: 30px;
 }
 
-.registerBtn:hover {
+.signupBtn:hover {
   background-color: darkcyan;
   color: whitesmoke;
 }
@@ -192,4 +199,14 @@ button:disabled {
   width: 100px;
   border-radius: 10px;
   height: 30px;
+}
+
+.statusUpdate {
+  display: block;
+  margin: 8px;
+  margin-top: 10%;
+  border-radius: 4px;
+  background-color: rgba(45, 231, 45, 0.6);
+  font-family:'Courier New', Courier, monospace;
+  font-size: 20px;
 }

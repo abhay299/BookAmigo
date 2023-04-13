@@ -23,9 +23,10 @@ const Login = () => {
 				console.log(response.data.message);
 			}else{
 				setLoginStatus("Login Successful!");
-				console.log(response.data[0].email, response.data[0].password);
+				// console.log(response.data[0].email, response.data[0].password);
 			}
 		});
+		navigate('/');
 	};
 
 	return (
@@ -43,11 +44,11 @@ const Login = () => {
 							value={password} onChange={ (e) => {setPassword(e.target.value)}} required
 						/>
 					</div>
-					<button type='submit' className='loginBtn' onClick={handleSubmit}>Log In</button>
+					<button type='submit' className='signinBtn' onClick={handleSubmit}>Log In</button>
 					{/* <h1 style={{color: 'red', fontSize: '15px', textAlign: 'center', marginTop: '20px'}}>{loginStatus}</h1> */}
 					
 					<div className='registerText'>Don't have an account?</div>
-					<button className='registerBtn' onClick={ () => navigate('/register')}>Register</button>
+					<button className='signinBtn' onClick={ () => navigate('/register')}>Register</button>
 					
 			</form>
 			

@@ -23,15 +23,20 @@ const Register = () => {
 			}else{
 				setRegisterStatus("Account Created Succesfully!")
 			}
-			console.log(response.data.message);
+			// console.log(response.data.message);
 		});
+
+		setName('');
+		setEmail('');
+		setPassword('');
+		setTimeout(() => {navigate('/login')}, 1300);
 	};
 
   return (
 	<div className='login'>
 		<form className='form'>
 			<header className='signup'>Sign Up</header>
-				<div className='inputContainer'>
+				<div className='inputSignupContainer'>
 					<label htmlFor='name'></label>
 					<input type='text' className='input' value={name} name='name' id="name" placeholder='Enter your Full Name' 
 					onChange={ (e) => setName(e.target.value)} required
@@ -49,11 +54,13 @@ const Register = () => {
 				</div>
 
 				<button type='submit' className='submitBtn'
-				disabled={name.length < 3 || email.length < 3 || password.length < 3} 
+				disabled={name.length < 3 || email.length < 3 || password.length < 5} 
 				onClick={handleSubmit}>Submit</button>
 
+				<h1 className='statusUpdate'>{registerStatus}</h1>
+
 				<div className='registerText'>Already have an account?</div>
-				<button className='registerBtn' onClick={ () => navigate('/login')}>Log In</button>
+				<button className='signupBtn' onClick={ () => navigate('/login')}>Log In</button>
 		</form>
 			
 	</div>

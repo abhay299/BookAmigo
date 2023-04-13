@@ -15,7 +15,19 @@ const db = mysql.createConnection({
 	host: "localhost",
 	user: "root",
 	password: "Abhay@78",
-	database:"credentialsdb" 
+	database:"credentialsdb"
+});
+
+const connection = mysql.createConnection({
+	host: "localhost",
+	user: "root",
+	password: "Abhay@78",
+	database:"bookamigodb"
+})
+
+connection.connect(function(err) {
+	if(err) {throw err};
+	console.log("Connected!");
 });
 
 // db.getConnection( (err, connection) => {
@@ -69,6 +81,13 @@ app.post('/login', (req, res) => {
 		})
 });
 
+app.get('/myBooking', (req, res) => {
+	connection.query("SELECT * FROM hotels;", (err, result, fields) => {
+		if(err) throw err;
+		res.send(result);
+		console.log(result)
+	});
+});
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
