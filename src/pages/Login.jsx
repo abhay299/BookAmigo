@@ -9,24 +9,30 @@ const Login = () => {
 
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const [loginStatus, setLoginStatus] = useState("");
+	const [loginStatus, setLoginStatus] = useState('');
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		
-		Axios.post("http://localhost:3001/login", {
+			Axios.post("http://localhost:3001/login", {
 			email : email, 
 			password : password,
 		}).then((response) => {
 			if(response.data.message) {
 				setLoginStatus(response.data.message);
-				console.log(response.data.message);
+				// console.log(response.data.message);
 			}else{
 				setLoginStatus("Login Successful!");
-				// console.log(response.data[0].email, response.data[0].password);
+				// console.log(response.data[0].email);
 			}
+
+			// if(response.data.message === "Incorrect Email or Password!") {
+			// 	return;}else{
+			// 		navigate('/');
+			// 	};
+
 		});
-		navigate('/');
+		console.log(loginStatus);
 	};
 
 	return (
@@ -45,7 +51,8 @@ const Login = () => {
 						/>
 					</div>
 					<button type='submit' className='signinBtn' onClick={handleSubmit}>Log In</button>
-					{/* <h1 style={{color: 'red', fontSize: '15px', textAlign: 'center', marginTop: '20px'}}>{loginStatus}</h1> */}
+
+					<h1 style={{color: 'red', fontSize: '15px', textAlign: 'center', marginTop: '20px'}}>{loginStatus}</h1>
 					
 					<div className='registerText'>Don't have an account?</div>
 					<button className='signinBtn' onClick={ () => navigate('/register')}>Register</button>

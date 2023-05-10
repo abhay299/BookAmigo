@@ -21,7 +21,7 @@ const Register = () => {
 			if(response.data.message) {
 				setRegisterStatus(response.data.message);
 			}else{
-				setRegisterStatus("Account Created Succesfully!")
+				setRegisterStatus("Account Created Successfully!")
 			}
 			// console.log(response.data.message);
 		});

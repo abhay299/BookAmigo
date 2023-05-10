@@ -1,5 +1,5 @@
 import "../App.css"
-
+import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Content from "../components/Content";
 // import Register from "./Register";
@@ -7,17 +7,34 @@ import Content from "../components/Content";
 
 const Home = () => {
 
-	// const [currentForm, setCurrentForm] =useState('login');
+	const [currentPage, setCurrentPage] = useState(1);
 
 	return (
 		<div>
-			<Navbar/>
-			<div className="homeContainer">
-				<Content/>
-			</div>
-			<div className="homeContainer">
-				<Content/>
-			</div>
+			<Navbar setCurrentPage = {setCurrentPage}/>
+			{currentPage == 1 &&
+				<div>
+					<div className="homeContainer">
+						<Content />
+					</div>
+					<div className="homeContainer">
+						<Content />
+					</div>
+				</div>
+			}
+			{currentPage == 2 &&
+				<div>
+					<h1>
+						Something Booking
+					</h1>
+					{/* <div className="homeContainer">
+						<Content />
+					</div>
+					<div className="homeContainer">
+						<Content />
+					</div> */}
+				</div>
+			}
 		</div>
 	)
 }

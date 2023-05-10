@@ -11,21 +11,14 @@ app.use(express.json());
 
 const mysql = require('mysql');
 
-const db = mysql.createConnection({
-	host: "localhost",
-	user: "root",
-	password: "Abhay@78",
-	database:"credentialsdb"
-});
-
-const connection = mysql.createConnection({
+const db= mysql.createConnection({
 	host: "localhost",
 	user: "root",
 	password: "Abhay@78",
 	database:"bookamigodb"
 })
 
-connection.connect(function(err) {
+db.connect(function(err) {
 	if(err) {throw err};
 	console.log("Connected!");
 });
@@ -51,7 +44,7 @@ app.post('/register', (req, res) => {
 	const email = req.body.email;
 	const password = req.body.password;
 
-	db.query("INSERT INTO users (name, email, password,created_at) VALUES (?, ?, ?,NOW())", [name, email, password],
+	db.query("INSERT INTO users (name, email, password, created_at) VALUES (?, ?, ?,NOW())", [name, email, password],
 		(err, result) => {
 			if(result){
 				res.send(result);
@@ -82,7 +75,7 @@ app.post('/login', (req, res) => {
 });
 
 app.get('/myBooking', (req, res) => {
-	connection.query("SELECT * FROM hotels;", (err, result) => {
+	db.query("SELECT * FROM hotels;", (err, result) => {
 		if(err) throw err;
 		res.send(result);
 		// console.log(result)
