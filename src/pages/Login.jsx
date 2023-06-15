@@ -13,15 +13,15 @@ const Login = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		
-			Axios.post("http://localhost:3001/login", {
-			email : email, 
-			password : password,
+
+		Axios.post("http://localhost:3001/login", {
+			email: email,
+			password: password,
 		}).then((response) => {
-			if(response.data.message) {
+			if (response.data.message) {
 				setLoginStatus(response.data.message);
 				// console.log(response.data.message);
-			}else{
+			} else {
 				setLoginStatus("Login Successful!");
 				// console.log(response.data[0].email);
 			}
@@ -39,26 +39,26 @@ const Login = () => {
 		<div className='login'>
 			<form className='form'>
 				<header className='signup'>Sign In</header>
-					<div className='inputContainer'>
-						<label htmlFor="email" ></label>
-						<input type='email' className='input' placeholder='Email' id="email" name="email"
-							value={email} onChange={ (e) => setEmail(e.target.value)} required
-						/>
+				<div className='inputContainer'>
+					<label htmlFor="email" ></label>
+					<input type='email' className='input' placeholder='Email' id="email" name="email"
+						value={email} onChange={(e) => setEmail(e.target.value)} required
+					/>
 
-						<label htmlFor="password" ></label>
-						<input type='password' className='input' placeholder='Password' id="password" name="password"
-							value={password} onChange={ (e) => {setPassword(e.target.value)}} required
-						/>
-					</div>
-					<button type='submit' className='signinBtn' onClick={handleSubmit}>Log In</button>
+					<label htmlFor="password" ></label>
+					<input type='password' className='input' placeholder='Password' id="password" name="password"
+						value={password} onChange={(e) => { setPassword(e.target.value) }} required
+					/>
+				</div>
+				<button type='submit' className='signinBtn' onClick={handleSubmit}>Log In</button>
 
-					<h1 style={{color: 'red', fontSize: '15px', textAlign: 'center', marginTop: '20px'}}>{loginStatus}</h1>
-					
-					<div className='registerText'>Don't have an account?</div>
-					<button className='signinBtn' onClick={ () => navigate('/register')}>Register</button>
-					
+				<h1 style={{ color: 'red', fontSize: '15px', textAlign: 'center', marginTop: '20px' }}>{loginStatus}</h1>
+
+				<div className='registerText'>Don't have an account?</div>
+				<button className='signinBtn' onClick={() => navigate('/register')}>Register</button>
+
 			</form>
-			
+
 		</div>
 	)
 };

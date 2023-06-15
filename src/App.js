@@ -1,21 +1,19 @@
-import './App.css';
-import Bookings from './pages/Bookings';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Support from './pages/Support';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+import Home from "./pages/home/Home";
+import Hotel from "./pages/hotel/Hotel";
+import List from "./pages/list/List";
 
 function App() {
-
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path="/myBooking" element={<Bookings/>}/>
-        <Route path="/contactUs" element={<Support/>}/>
-        <Route path="/register" element={<Register/>}/>
-        <Route path="/login" element={<Login/>}/>
+        <Route path="/hotels" element={<List/>}/>
+        <Route path="/hotels/:id" element={<Hotel/>}/>
       </Routes>
     </BrowserRouter>
   );

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Axios from 'axios';
 
@@ -14,13 +14,13 @@ const Register = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		Axios.post("http://localhost:3001/register", {
-			name : name,
-			email : email, 
-			password : password,
+			name: name,
+			email: email,
+			password: password,
 		}).then((response) => {
-			if(response.data.message) {
+			if (response.data.message) {
 				setRegisterStatus(response.data.message);
-			}else{
+			} else {
 				setRegisterStatus("Account Created Successfully!")
 			}
 			// console.log(response.data.message);
@@ -29,42 +29,42 @@ const Register = () => {
 		setName('');
 		setEmail('');
 		setPassword('');
-		setTimeout(() => {navigate('/login')}, 1300);
+		setTimeout(() => { navigate('/login') }, 1300);
 	};
 
-  return (
-	<div className='login'>
-		<form className='form'>
-			<header className='signup'>Sign Up</header>
+	return (
+		<div className='login'>
+			<form className='form'>
+				<header className='signup'>Sign Up</header>
 				<div className='inputSignupContainer'>
 					<label htmlFor='name'></label>
-					<input type='text' className='input' value={name} name='name' id="name" placeholder='Enter your Full Name' 
-					onChange={ (e) => setName(e.target.value)} required
+					<input type='text' className='input' value={name} name='name' id="name" placeholder='Enter your Full Name'
+						onChange={(e) => setName(e.target.value)} required
 					/>
 
 					<label htmlFor="email"></label>
 					<input type='email' className='input' placeholder='Enter your Email ID' id="email" name="email"
-						value={email} onChange={ (e) => setEmail(e.target.value)} required
+						value={email} onChange={(e) => setEmail(e.target.value)} required
 					/>
 
 					<label htmlFor="password"></label>
 					<input type='password' className='input' placeholder='Enter your Password' id="password" name="password"
-						value={password} onChange={ (e) => {setPassword(e.target.value)}} required
+						value={password} onChange={(e) => { setPassword(e.target.value) }} required
 					/>
 				</div>
 
 				<button type='submit' className='submitBtn'
-				disabled={name.length < 3 || email.length < 3 || password.length < 5} 
-				onClick={handleSubmit}>Submit</button>
+					disabled={name.length < 3 || email.length < 3 || password.length < 5}
+					onClick={handleSubmit}>Submit</button>
 
 				<h1 className='statusUpdate'>{registerStatus}</h1>
 
 				<div className='registerText'>Already have an account?</div>
-				<button className='signupBtn' onClick={ () => navigate('/login')}>Log In</button>
-		</form>
-			
-	</div>
-  )
+				<button className='signupBtn' onClick={() => navigate('/login')}>Log In</button>
+			</form>
+
+		</div>
+	)
 };
 
 export default Register;
