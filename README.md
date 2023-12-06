@@ -11,7 +11,6 @@ Welcome to BookAmigo! BookAmigo is a front-end hotel booking application develop
 - [Installation](#installation)
 - [Usage](#usage)
 
-
 ## Features
 
 - **Browse Hotels**: Explore a wide range of hotels with detailed information.
@@ -25,7 +24,27 @@ Welcome to BookAmigo! BookAmigo is a front-end hotel booking application develop
   - React.js
   - CSS3
 
-# Getting Started with Create React App
+## Screenshots
+
+![image1](./src/assets/BookAmigo/BA-homePage.png)
+_Home Page_
+
+![image2](./src/assets/BookAmigo/BA-hotelist.png)
+_Hotel List_
+
+![image3](./src/assets/BookAmigo/BA-hotelPage.png)
+_Booking Page_
+
+![image4](./src/assets/BookAmigo/BA-featured.png)
+_Featured Hotels_
+
+![image5](./src/assets/BookAmigo/BA-singleHotelPage.png)
+_Hotel Page_
+
+![image6](./src/assets/BookAmigo/BA-footer.png)
+_Footer_
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
