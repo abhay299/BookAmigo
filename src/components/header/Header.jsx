@@ -1,12 +1,3 @@
-import {
-  faBed,
-  faCalendarDays,
-  faCar,
-  faPerson,
-  faPlane,
-  faTaxi,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./header.css";
 import { DateRange } from "react-date-range";
 import { useState } from "react";
@@ -14,6 +5,8 @@ import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
+import { Bed, CalendarMonth, People } from "@mui/icons-material";
+import axios from "axios";
 
 const Header = ({ type }) => {
   const [destination, setDestination] = useState("");
@@ -27,9 +20,9 @@ const Header = ({ type }) => {
   ]);
   const [openOptions, setOpenOptions] = useState(false);
   const [options, setOptions] = useState({
-    adult: 1,
+    adult: 0,
     children: 0,
-    room: 1,
+    room: 0,
   });
 
   const navigate = useNavigate();
@@ -43,8 +36,31 @@ const Header = ({ type }) => {
     });
   };
 
-  const handleSearch = () => {
-    navigate("/hotels", { state: { destination, date, options } });
+  const handleSearch = async () => {
+    let data;
+    try {
+      const response = await axios.request(getDestinationName);
+      data = await response.data;
+      // console.log("Response", data);
+    } catch (error) {
+      console.error("Error: ", error);
+    }
+    navigate("/hotels", {
+      state: { destination, date, options, data },
+    });
+  };
+
+  const getDestinationName = {
+    method: "GET",
+    url: "https://apidojo-booking-v1.p.rapidapi.com/locations/auto-complete",
+    params: {
+      text: destination,
+      languagecode: "en-us",
+    },
+    headers: {
+      "X-RapidAPI-Key": process.env.REACT_APP_RAPIDAPI_KEY,
+      "X-RapidAPI-Host": process.env.REACT_APP_RAPIDAPI_HOST,
+    },
   };
 
   return (
@@ -54,32 +70,32 @@ const Header = ({ type }) => {
           type === "list" ? "headerContainer listMode" : "headerContainer"
         }
       >
-        <div className="headerList">
-          <div className="headerListItem active">
-            <FontAwesomeIcon icon={faBed} />
+        {/* <div className="headerList">
+          <div className="headerListItem">
+            <LocalHotel />
             <span>Stays</span>
           </div>
           <div className="headerListItem">
-            <FontAwesomeIcon icon={faPlane} />
+            <Flight />
             <span>Flights</span>
           </div>
           <div className="headerListItem">
-            <FontAwesomeIcon icon={faCar} />
+            <CarRental />
             <span>Car rentals</span>
           </div>
           <div className="headerListItem">
-            <FontAwesomeIcon icon={faBed} />
+            <Attractions />
             <span>Attractions</span>
           </div>
           <div className="headerListItem">
-            <FontAwesomeIcon icon={faTaxi} />
+            <LocalTaxi />
             <span>Airport taxis</span>
           </div>
-        </div>
+        </div> */}
         {type !== "list" && (
-          <>
+          <div className="headerContent">
             <h1 className="headerTitle">
-              A lifetime of discounts? It's Genius.
+              What are you waiting for? Get your bookings now!
             </h1>
             <p className="headerDesc">
               Get rewarded for your travels – unlock instant savings of 10% or
@@ -87,7 +103,7 @@ const Header = ({ type }) => {
             </p>
             <div className="headerSearch">
               <div className="headerSearchItem">
-                <FontAwesomeIcon icon={faBed} className="headerIcon" />
+                <Bed className="headerIcon" />
                 <input
                   type="text"
                   placeholder="Where are you going?"
@@ -96,7 +112,7 @@ const Header = ({ type }) => {
                 />
               </div>
               <div className="headerSearchItem">
-                <FontAwesomeIcon icon={faCalendarDays} className="headerIcon" />
+                <CalendarMonth className="headerIcon" />
                 <span
                   onClick={() => setOpenDate(!openDate)}
                   className="headerSearchText"
@@ -116,7 +132,7 @@ const Header = ({ type }) => {
                 )}
               </div>
               <div className="headerSearchItem">
-                <FontAwesomeIcon icon={faPerson} className="headerIcon" />
+                <People className="headerIcon" />
                 <span
                   onClick={() => setOpenOptions(!openOptions)}
                   className="headerSearchText"
@@ -127,7 +143,7 @@ const Header = ({ type }) => {
                       <span className="optionText">Adult</span>
                       <div className="optionCounter">
                         <button
-                          disabled={options.adult <= 1}
+                          disabled={options.adult <= 0}
                           className="optionCounterButton"
                           onClick={() => handleOption("adult", "d")}
                         >
@@ -195,7 +211,7 @@ const Header = ({ type }) => {
                 </button>
               </div>
             </div>
-          </>
+          </div>
         )}
       </div>
     </div>

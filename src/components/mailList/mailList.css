@@ -1,29 +1,41 @@
-.mail{
+.mail {
   width: 100%;
   margin-top: 50px;
-  background-color: #003580;
-  color: white;
+  background-color: #163020;
+  color: #eef0e5;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  padding: 50px;
 }
 
-.mailInputContainer>input{
+.mailTitle {
+  color: #eef0e5;
+}
+
+.mailDesc {
+  color: #eef0e5;
+}
+
+.mailInputContainer {
+  padding: 14px;
+}
+
+.mailInputContainer > input {
   width: 300px;
-  height: 30px;
+  height: 20px;
   padding: 10px;
   border: none;
   margin-right: 10px;
   border-radius: 5px;
+  color: #163020;
 }
 
-.mailInputContainer>button{
-  height: 50px;
-  background-color: #0071c2;
-  color: white;
-  font-weight: 500;
+.mailInputContainer > button {
+  height: 40px;
+  background-color: #b6c4b6;
+  color: #163020;
+  font-weight: 600;
   border: none;
   border-radius: 5px;
   cursor: pointer;

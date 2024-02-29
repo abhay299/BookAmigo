@@ -10,8 +10,8 @@ const Featured = () => {
           className="featuredImg"
         />
         <div className="featuredTitles">
-          <h1>Kolkata</h1>
-          <h2>64 properties</h2>
+          {/* <h1>Kolkata</h1>
+          <h2>64 properties</h2> */}
         </div>
       </div>
 
@@ -22,8 +22,8 @@ const Featured = () => {
           className="featuredImg"
         />
         <div className="featuredTitles">
-          <h1>Mangalore</h1>
-          <h2>83 properties</h2>
+          {/* <h1>Mangalore</h1>
+          <h2>83 properties</h2> */}
         </div>
       </div>
       <div className="featuredItem">
@@ -33,8 +33,8 @@ const Featured = () => {
           className="featuredImg"
         />
         <div className="featuredTitles">
-          <h1>Lucknow</h1>
-          <h2>32 properties</h2>
+          {/* <h1>Lucknow</h1>
+          <h2>32 properties</h2> */}
         </div>
       </div>
     </div>

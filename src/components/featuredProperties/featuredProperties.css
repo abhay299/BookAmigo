@@ -1,38 +1,37 @@
 .fp {
   width: 100%;
-  max-width: 1024px;
   display: flex;
-  justify-content: space-between;
-  gap: 20px;
+  flex-wrap: wrap;
 }
 
-.fpItem{
+.fpItem {
   flex: 1;
+  flex-direction: column;
   gap: 10px;
   display: flex;
-  flex-direction: column;
+  margin: 0px 10px;
 }
 
-.fpImg{
-  width: 100%;
+.fpImg {
+  width: 80%;
   height: 250px;
   object-fit: cover;
 }
 
-.fpName{
+.fpName {
   color: #333;
   font-weight: bold;
 }
 
-.fpCity{
+.fpCity {
   font-weight: 300;
 }
 
-.fpPrice{
+.fpPrice {
   font-weight: 500;
 }
 
-.fpRating>button{
+.fpRating > button {
   background-color: #003580;
   color: white;
   border: none;
@@ -41,6 +40,6 @@
   font-weight: bold;
 }
 
-.fpRating>span{
+.fpRating > span {
   font-size: 14px;
 }

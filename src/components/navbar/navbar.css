@@ -1,45 +1,50 @@
 .navbar {
-  display: flex;
   text-align: center;
-  justify-content: center;
-  color: black;
+  color: #eef0e5;
 }
 
 .navContainer {
-  background-color: #ffd700;
+  background-color: #163020;
   display: flex;
-  flex-direction: column;
-  height:80px;
+  height: 100px;
   width: 100%;
-  justify-content: space-around;
-  color: black;
+  color: #eef0e5;
 }
 
-.logo{
+.logo {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-left: 5rem;
+  letter-spacing: 0.2rem;
+  align-items: center;
   font-size: 32pt;
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  cursor: pointer;
 }
 
 .navItems {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  width:100%;
-  height:30px;
-  background-color: #ffd700;
+  width: 90%;
+  margin-left: 3rem;
+  margin-right: 3rem;
+  background-color: #163020;
 }
 
 .navButton {
-  background-color: #0071c2;
-  color: white;
-  margin: 0px 4px 5px 4px ;
+  background-color: #b6c4b6;
+  color: #163020;
   padding: 5px;
   border: 0cm;
-  font-size: 16px;
+  border-radius: 8px;
+  font-size: 14pt;
+  margin-left: 12px;
 }
 
-.navButton:hover{
-  background-color: #11518a;
-  color: #ffd700;
+.navButton:hover {
+  background-color: #304d30;
+  color: #eef0e5;
   cursor: pointer;
 }
