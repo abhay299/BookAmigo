@@ -23,7 +23,7 @@
 
 .siTitle {
   font-size: 20px;
-  color: #0071c2;
+  color: #304d30;
 }
 
 .siDistance {
@@ -32,29 +32,30 @@
 
 .siTaxiOp {
   font-size: 12px;
-  background-color: #008009;
+  background-color: #304d30;
   color: white;
   width: max-content;
   padding: 3px;
   border-radius: 5px;
+  cursor: pointer;
 }
 
-.siSubtitle{
+.siSubtitle {
   font-size: 12px;
   font-weight: bold;
 }
 
-.siFeatures{
+.siFeatures {
   font-size: 12px;
 }
 
-.siCancelOp{
+.siCancelOp {
   font-size: 12px;
   color: #008009;
   font-weight: bold;
 }
 
-.siCancelOpSubtitle{
+.siCancelOpSubtitle {
   font-size: 12px;
   color: #008009;
 }
@@ -63,43 +64,43 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between
+  justify-content: space-between;
 }
 
-.siRating{
+.siRating {
   display: flex;
-  justify-content: space-between
+  justify-content: space-between;
 }
 
-.siRating>span{
+.siRating > span {
   font-weight: 500;
 }
-.siRating>button{
- background-color: #003580;
- color: white;
- padding: 5px;
- font-weight: bold;
- border: none;
+.siRating > button {
+  background-color: #304d30;
+  color: white;
+  padding: 5px;
+  font-weight: bold;
+  border: none;
 }
 
-.siDetailTexts{
+.siDetailTexts {
   text-align: right;
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 
-.siPrice{
+.siPrice {
   font-size: 24px;
 }
 
-.siTaxOp{
+.siTaxOp {
   font-size: 12px;
   color: gray;
 }
 
-.siCheckButton{
-  background-color: #0071c2;
+.siCheckButton {
+  background-color: #304d30;
   color: white;
   font-weight: bold;
   padding: 10px 5px;

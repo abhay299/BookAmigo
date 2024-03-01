@@ -70,28 +70,6 @@ const Header = ({ type }) => {
           type === "list" ? "headerContainer listMode" : "headerContainer"
         }
       >
-        {/* <div className="headerList">
-          <div className="headerListItem">
-            <LocalHotel />
-            <span>Stays</span>
-          </div>
-          <div className="headerListItem">
-            <Flight />
-            <span>Flights</span>
-          </div>
-          <div className="headerListItem">
-            <CarRental />
-            <span>Car rentals</span>
-          </div>
-          <div className="headerListItem">
-            <Attractions />
-            <span>Attractions</span>
-          </div>
-          <div className="headerListItem">
-            <LocalTaxi />
-            <span>Airport taxis</span>
-          </div>
-        </div> */}
         {type !== "list" && (
           <div className="headerContent">
             <h1 className="headerTitle">

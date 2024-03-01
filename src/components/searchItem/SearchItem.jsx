@@ -1,8 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import "./searchItem.css";
 
 const SearchItem = ({ hotel }) => {
   // console.log("HOTEL =>", hotel);
-
+  const navigate = useNavigate();
   const currency = new Intl.NumberFormat(
     `${hotel.default_language}-${hotel.countrycode.toUpperCase()}`,
     {
@@ -11,8 +12,16 @@ const SearchItem = ({ hotel }) => {
     }
   ).format(hotel.min_total_price);
 
+  const handleSingleHotel = (s) => {
+    console.log("Hotel id clicked=>", s.hotel_id);
+    const hotel_id = s.hotel_id;
+    navigate(`/hotels/${hotel_id}`, {
+      state: { s },
+    });
+  };
+
   return (
-    <div className="searchItem">
+    <div className="searchItem" onClick={() => handleSingleHotel(hotel)}>
       <img src={hotel.main_photo_url} alt="" className="siImg" />
       <div className="siDesc">
         <h1 className="siTitle">{hotel.hotel_name}</h1>

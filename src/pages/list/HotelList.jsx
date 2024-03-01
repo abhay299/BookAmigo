@@ -139,7 +139,11 @@ const HotelList = () => {
           ) : (
             hotelList?.map((hotel, index) => {
               return (
-                <div className="listResult" key={index}>
+                <div
+                  className="listResult"
+                  key={index}
+                  // onClick={handleSingleHotel(hotel)}
+                >
                   <SearchItem hotel={hotel} />
                 </div>
               );

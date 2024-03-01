@@ -1,6 +1,5 @@
 import "./hotel.css";
 import Navbar from "../../components/navbar/Navbar";
-import Header from "../../components/header/Header";
 import MailList from "../../components/mailList/MailList";
 import Footer from "../../components/footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,14 +10,20 @@ import {
   faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Hotel = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
+  const [reviews, setReviews] = useState("");
+  const data = location.state?.s;
 
   const photos = [
     {
-      src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261707778.jpg?k=56ba0babbcbbfeb3d3e911728831dcbc390ed2cb16c51d88159f82bf751d04c6&o=&hp=1",
+      src: `${data?.main_photo_url}`,
     },
     {
       src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261707367.jpg?k=cbacfdeb8404af56a1a94812575d96f6b80f6740fd491d02c6fc3912a16d8757&o=&hp=1",
@@ -54,10 +59,42 @@ const Hotel = () => {
     setSlideNumber(newSlideNumber);
   };
 
+  // console.log(data);
+
+  const currency = new Intl.NumberFormat(
+    `${data.default_language}-${data.countrycode.toUpperCase()}`,
+    {
+      style: "currency",
+      currency: data.currency_code,
+    }
+  ).format(data.min_total_price);
+
+  const getReviews = {
+    method: "GET",
+    url: "https://apidojo-booking-v1.p.rapidapi.com/properties/get-featured-reviews",
+    params: {
+      hotel_id: data.hotel_id,
+      languagecode: "en-us",
+    },
+    headers: {
+      "X-RapidAPI-Key": process.env.REACT_APP_RAPIDAPI_KEY,
+      "X-RapidAPI-Host": process.env.REACT_APP_RAPIDAPI_HOST,
+    },
+  };
+
+  const handleReviews = async () => {
+    try {
+      const reviewRes = await axios.request(getReviews);
+      const res = await reviewRes.data;
+      setReviews(res);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div>
       <Navbar />
-      <Header type="list" />
       <div className="hotelContainer">
         {open && (
           <div className="slider">
@@ -82,17 +119,17 @@ const Hotel = () => {
           </div>
         )}
         <div className="hotelWrapper">
-          <button className="bookNow">Reserve or Book Now!</button>
-          <h1 className="hotelTitle">Tower Street Apartments</h1>
+          {/* TODO : Refactor a tag behaviour */}
+          <a href="#section">
+            <button className="bookNow">Check Reviews!</button>
+          </a>
+          <h1 className="hotelTitle">{data?.hotel_name}</h1>
           <div className="hotelAddress">
             <FontAwesomeIcon icon={faLocationDot} />
-            <span>Elton St 125 New york</span>
+            <span>{data?.address}</span>
           </div>
           <span className="hotelDistance">
-            Excellent location – 500m from center
-          </span>
-          <span className="hotelPriceHighlight">
-            Book a stay over $114 at this property and get a free airport taxi
+            {data?.review_score_word} - {data?.distance}km away from airport
           </span>
           <div className="hotelImages">
             {photos.map((photo, i) => (
@@ -127,13 +164,42 @@ const Hotel = () => {
               <h1>Perfect for a 9-night stay!</h1>
               <span>
                 Located in the real heart of Krakow, this property has an
-                excellent location score of 9.8!
+                excellent location score of {data?.review_score}!
               </span>
               <h2>
-                <b>$945</b> (9 nights)
+                <b>{currency}</b>
               </h2>
-              <button>Reserve or Book Now!</button>
+              <button>Book Now!</button>
             </div>
+          </div>
+          <div id="section">
+            {reviews ? (
+              <div className="reviewContainer">
+                <h2>Guest Reviews</h2>
+                {reviews.vpm_featured_reviews.map((review) => {
+                  return (
+                    <div className="commentContainer">
+                      <div className="userDetail">
+                        <img
+                          src={review.author.avatar}
+                          alt="avatar"
+                          width="50px"
+                          height="50px"
+                          style={{ borderRadius: "50%", padding: "0px 30px" }}
+                        />
+                        <h2>{review.author.name}</h2>
+                        <span>Time: {review.date}</span>
+                      </div>
+                      <p className="userComment">{review.pros}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <button className="loadReview" onClick={handleReviews}>
+                Load Reviews
+              </button>
+            )}
           </div>
         </div>
         <MailList />

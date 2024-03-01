@@ -20,7 +20,7 @@
   right: 0;
   border: none;
   padding: 10px 20px;
-  background-color: #0071c2;
+  background-color: #304d30;
   color: white;
   font-weight: bold;
   border-radius: 5px;
@@ -82,7 +82,7 @@
 
 .hotelDetailsPrice {
   flex: 1;
-  background-color: #ebf3ff;
+  background-color: #eef0e5;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -102,14 +102,14 @@
 .hotelDetailsPrice > button {
   border: none;
   padding: 10px 20px;
-  background-color: #0071c2;
-  color: white;
+  background-color: #304d30;
+  color: #eef0e5;
   font-weight: bold;
   cursor: pointer;
   border-radius: 5px;
 }
 
-.slider{
+.slider {
   position: sticky;
   top: 0;
   left: 0;
@@ -121,7 +121,7 @@
   align-items: center;
 }
 
-.sliderWrapper{
+.sliderWrapper {
   width: 100%;
   height: 100%;
   display: flex;
@@ -129,12 +129,12 @@
   align-items: center;
 }
 
-.sliderImg{
+.sliderImg {
   width: 80%;
   height: 80vh;
 }
 
-.close{
+.close {
   position: absolute;
   top: 20px;
   right: 20px;
@@ -143,9 +143,46 @@
   cursor: pointer;
 }
 
-.arrow{
+.arrow {
   margin: 20px;
   font-size: 50px;
   color: lightgray;
   cursor: pointer;
+}
+
+.loadReview {
+  border: none;
+  padding: 10px 20px;
+  background-color: #304d30;
+  color: #eef0e5;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.reviewContainer {
+  color: #163020;
+  margin: 10px 0px;
+  padding: 5px 0px;
+}
+
+.commentContainer {
+  background-color: #eef0e5;
+  border: 1px solid #eef0e5;
+  margin: 8px 4px;
+  border-radius: 10px;
+  color: #163020;
+}
+
+.userDetail {
+  display: flex;
+  align-items: center;
+}
+
+.userDetail span {
+  margin-left: 80px;
+}
+
+.userComment {
+  padding: 0px 40px;
 }
