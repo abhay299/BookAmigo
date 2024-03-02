@@ -1,25 +1,32 @@
-import "./hotel.css";
-import Navbar from "../../components/navbar/Navbar";
-import MailList from "../../components/mailList/MailList";
-import Footer from "../../components/footer/Footer";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleArrowLeft,
   faCircleArrowRight,
   faCircleXmark,
   faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
+import { useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
+import Footer from "../../components/footer/Footer";
+import MailList from "../../components/mailList/MailList";
+import Navbar from "../../components/navbar/Navbar";
+import "./hotel.css";
 
 const Hotel = () => {
-  const navigate = useNavigate();
   const location = useLocation();
   const [slideNumber, setSlideNumber] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [reviews, setReviews] = useState("");
-  const data = location.state?.s;
+
+  const data = location.state.s;
+
+  const scrollToReview = useRef();
+
+  const onClickReachReview = () => {
+    scrollToReview.current?.scrollIntoView();
+  };
 
   const photos = [
     {
@@ -59,8 +66,6 @@ const Hotel = () => {
     setSlideNumber(newSlideNumber);
   };
 
-  // console.log(data);
-
   const currency = new Intl.NumberFormat(
     `${data.default_language}-${data.countrycode.toUpperCase()}`,
     {
@@ -84,13 +89,17 @@ const Hotel = () => {
 
   const handleReviews = async () => {
     try {
+      setIsLoading(true);
       const reviewRes = await axios.request(getReviews);
       const res = await reviewRes.data;
       setReviews(res);
+      setIsLoading(false);
     } catch (error) {
       console.error(error);
     }
   };
+
+  let date, time;
 
   return (
     <div>
@@ -119,10 +128,9 @@ const Hotel = () => {
           </div>
         )}
         <div className="hotelWrapper">
-          {/* TODO : Refactor a tag behaviour */}
-          <a href="#section">
-            <button className="bookNow">Check Reviews!</button>
-          </a>
+          <button className="bookNow" onClick={onClickReachReview}>
+            Check Reviews!
+          </button>
           <h1 className="hotelTitle">{data?.hotel_name}</h1>
           <div className="hotelAddress">
             <FontAwesomeIcon icon={faLocationDot} />
@@ -147,24 +155,24 @@ const Hotel = () => {
             <div className="hotelDetailsTexts">
               <h1 className="hotelTitle">Stay in the heart of City</h1>
               <p className="hotelDesc">
-                Located a 5-minute walk from St. Florian's Gate in Krakow, Tower
-                Street Apartments has accommodations with air conditioning and
+                Located a 5-minute walk from St. Florian's Gate in Krakow,{" "}
+                {data.hotel_name} has accommodations with air conditioning and
                 free WiFi. The units come with hardwood floors and feature a
                 fully equipped kitchenette with a microwave, a flat-screen TV,
                 and a private bathroom with shower and a hairdryer. A fridge is
                 also offered, as well as an electric tea pot and a coffee
                 machine. Popular points of interest near the apartment include
                 Cloth Hall, Main Market Square and Town Hall Tower. The nearest
-                airport is John Paul II International Kraków–Balice, 16.1 km
-                from Tower Street Apartments, and the property offers a paid
-                airport shuttle service.
+                airport is John Paul II International Kraków–Balice,{" "}
+                {data.distance} km from {data.hotel_name}, and the property
+                offers a paid airport shuttle service.
               </p>
             </div>
             <div className="hotelDetailsPrice">
-              <h1>Perfect for a 9-night stay!</h1>
+              <h1>Perfect for a 4-night stay!</h1>
               <span>
-                Located in the real heart of Krakow, this property has an
-                excellent location score of {data?.review_score}!
+                Located in the real heart of {data.city_trans}, this property
+                has an excellent location score of {data?.review_score}!
               </span>
               <h2>
                 <b>{currency}</b>
@@ -172,13 +180,15 @@ const Hotel = () => {
               <button>Book Now!</button>
             </div>
           </div>
-          <div id="section">
-            {reviews ? (
+          <div id="section" ref={scrollToReview}>
+            {isLoading ? (
+              <div>Loading...</div>
+            ) : reviews ? (
               <div className="reviewContainer">
                 <h2>Guest Reviews</h2>
                 {reviews.vpm_featured_reviews.map((review) => {
                   return (
-                    <div className="commentContainer">
+                    <div className="commentContainer" key={review.hotel_id}>
                       <div className="userDetail">
                         <img
                           src={review.author.avatar}
@@ -188,7 +198,11 @@ const Hotel = () => {
                           style={{ borderRadius: "50%", padding: "0px 30px" }}
                         />
                         <h2>{review.author.name}</h2>
-                        <span>Time: {review.date}</span>
+                        <span style={{ display: "none" }}>
+                          {([date, time] = review.date.split(" "))}
+                        </span>
+                        <span>Date: {date}</span>
+                        <span>Time: {time}</span>
                       </div>
                       <p className="userComment">{review.pros}</p>
                     </div>
@@ -197,7 +211,7 @@ const Hotel = () => {
               </div>
             ) : (
               <button className="loadReview" onClick={handleReviews}>
-                Load Reviews
+                Show Reviews
               </button>
             )}
           </div>
