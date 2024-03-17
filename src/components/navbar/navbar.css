@@ -1,50 +1,105 @@
-.navbar {
-  text-align: center;
-  color: #eef0e5;
+@media only screen and (min-width: 520px) {
+  .navbar {
+    text-align: center;
+    color: #eef0e5;
+  }
+
+  .navContainer {
+    background-color: #163020;
+    display: flex;
+    height: 100px;
+    width: 100%;
+    color: #eef0e5;
+  }
+
+  .logo {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-left: 5rem;
+    letter-spacing: 0.2rem;
+    align-items: center;
+    font-size: 32pt;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    cursor: pointer;
+  }
+
+  .navItems {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 90%;
+    margin-left: 3rem;
+    margin-right: 3rem;
+    background-color: #163020;
+  }
+
+  .navButton {
+    background-color: #b6c4b6;
+    color: #163020;
+    padding: 5px;
+    border: 0cm;
+    border-radius: 8px;
+    font-size: 14pt;
+    margin-left: 12px;
+  }
+
+  .navButton:hover {
+    background-color: #304d30;
+    color: #eef0e5;
+    cursor: pointer;
+  }
 }
 
-.navContainer {
-  background-color: #163020;
-  display: flex;
-  height: 100px;
-  width: 100%;
-  color: #eef0e5;
-}
+@media only screen and (max-width: 520px) {
+  .navbar {
+    text-align: center;
+    color: #eef0e5;
+  }
 
-.logo {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  margin-left: 5rem;
-  letter-spacing: 0.2rem;
-  align-items: center;
-  font-size: 32pt;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  cursor: pointer;
-}
+  .navContainer {
+    background-color: #163020;
+    display: flex;
+    height: 100px;
+    width: 100%;
+    color: #eef0e5;
+  }
 
-.navItems {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  width: 90%;
-  margin-left: 3rem;
-  margin-right: 3rem;
-  background-color: #163020;
-}
+  .logo {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-left: 5rem;
+    letter-spacing: 0.2rem;
+    align-items: center;
+    font-size: 32pt;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    cursor: pointer;
+  }
 
-.navButton {
-  background-color: #b6c4b6;
-  color: #163020;
-  padding: 5px;
-  border: 0cm;
-  border-radius: 8px;
-  font-size: 14pt;
-  margin-left: 12px;
-}
+  .navItems {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 90%;
+    margin-left: 3rem;
+    margin-right: 3rem;
+    background-color: #163020;
+  }
 
-.navButton:hover {
-  background-color: #304d30;
-  color: #eef0e5;
-  cursor: pointer;
+  .navButton {
+    background-color: #b6c4b6;
+    color: #163020;
+    padding: 5px;
+    border: 0cm;
+    border-radius: 8px;
+    font-size: 14pt;
+    margin-left: 12px;
+  }
+
+  .navButton:hover {
+    background-color: #304d30;
+    color: #eef0e5;
+    cursor: pointer;
+  }
 }

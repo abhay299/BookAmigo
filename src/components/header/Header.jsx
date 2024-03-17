@@ -37,11 +37,18 @@ const Header = ({ type }) => {
   };
 
   const handleSearch = async () => {
+    if (
+      !destination ||
+      format(date[0].startDate, "MM/dd/yyyy") ===
+        format(date[0].endDate, "MM/dd/yyyy")
+    ) {
+      alert("Please enter different dates or destination correctly");
+      return;
+    }
     let data;
     try {
       const response = await axios.request(getDestinationName);
       data = await response.data;
-      // console.log("Response", data);
     } catch (error) {
       console.error("Error: ", error);
     }

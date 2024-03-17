@@ -96,6 +96,7 @@ const Hotel = () => {
       setIsLoading(false);
     } catch (error) {
       console.error(error);
+      alert("Something went wrong: ", error);
     }
   };
 
@@ -155,7 +156,7 @@ const Hotel = () => {
             <div className="hotelDetailsTexts">
               <h1 className="hotelTitle">Stay in the heart of City</h1>
               <p className="hotelDesc">
-                Located a 5-minute walk from St. Florian's Gate in Krakow,{" "}
+                Located a 5-minute walk from St. Florian's Gate,{" "}
                 {data.hotel_name} has accommodations with air conditioning and
                 free WiFi. The units come with hardwood floors and feature a
                 fully equipped kitchenette with a microwave, a flat-screen TV,

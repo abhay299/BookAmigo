@@ -1,14 +1,11 @@
 import "./list.css";
 import Navbar from "../../components/navbar/Navbar";
 import { useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { format } from "date-fns";
 import { DateRange } from "react-date-range";
 import SearchItem from "../../components/searchItem/SearchItem";
 import axios from "axios";
-import { useEffect } from "react";
-// chicago dest_id = 20033173
-// mumbai dest_id = -2092174
 
 const HotelList = () => {
   const location = useLocation();
@@ -17,6 +14,7 @@ const HotelList = () => {
   const [openDate, setOpenDate] = useState(false);
   const options = location.state.options;
   const data = location.state.data;
+  // TODO: create state variables of 'options' and 'data'
   const [isLoading, setIsLoading] = useState(false);
   const [hotelData, setHotelData] = useState();
 
@@ -61,7 +59,6 @@ const HotelList = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // console.log("Data =>", hotelData);
   const hotelList = hotelData?.result;
 
   return (
@@ -144,11 +141,7 @@ const HotelList = () => {
           ) : (
             hotelList?.map((hotel, index) => {
               return (
-                <div
-                  className="listResult"
-                  key={index}
-                  // onClick={handleSingleHotel(hotel)}
-                >
+                <div className="listResult" key={index}>
                   <SearchItem hotel={hotel} />
                 </div>
               );

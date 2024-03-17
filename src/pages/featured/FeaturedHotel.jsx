@@ -49,7 +49,6 @@ const FeaturedHotel = () => {
 
     setSlideNumber(newSlideNumber);
   };
-  console.log("Data =>", data[id - 1]?.photos);
 
   return (
     <div>

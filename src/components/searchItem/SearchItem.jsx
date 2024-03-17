@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import "./searchItem.css";
 
 const SearchItem = ({ hotel }) => {
-  // console.log("HOTEL =>", hotel);
   const navigate = useNavigate();
   const currency = new Intl.NumberFormat(
     `${hotel.default_language}-${hotel.countrycode.toUpperCase()}`,
@@ -12,11 +11,10 @@ const SearchItem = ({ hotel }) => {
     }
   ).format(hotel.min_total_price);
 
-  const handleSingleHotel = (s) => {
-    console.log("Hotel id clicked=>", s.hotel_id);
-    const hotel_id = s.hotel_id;
+  const handleSingleHotel = (curr_hotel) => {
+    const hotel_id = curr_hotel.hotel_id;
     navigate(`/hotels/${hotel_id}`, {
-      state: { s },
+      state: { curr_hotel },
     });
   };
 
