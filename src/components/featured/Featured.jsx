@@ -1,41 +1,51 @@
+import { useNavigate } from "react-router-dom";
 import "./featured.css";
 
 const Featured = () => {
+  const navigate = useNavigate();
+
+  const onFeaturedClick = (e) => {
+    navigate(`/featured/${e.target.id}`);
+  };
+
   return (
     <div className="featured">
-      <div className="featuredItem">
+      <div className="featuredItem" onClick={onFeaturedClick}>
         <img
-          src="https://images.unsplash.com/photo-1606046604972-77cc76aee944?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8aG90ZWxzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=1000&q=60"
+          id="1"
+          src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/a2/4e/0e/hotel-facade.jpg?w=900&h=-1&s=1"
           alt=""
           className="featuredImg"
         />
-        <div className="featuredTitles">
-          {/* <h1>Kolkata</h1>
-          <h2>64 properties</h2> */}
-        </div>
+        {/* <div className="featuredTitles">
+          <h1>Kolkata</h1>
+          <h2>64 properties</h2>
+        </div> */}
       </div>
 
-      <div className="featuredItem">
+      <div className="featuredItem" onClick={onFeaturedClick}>
         <img
-          src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdGVsc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=1000&q=60"
+          id="2"
+          src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0b/6e/f8/d0/hotel-lobby.jpg?w=1800&h=-1&s=1"
           alt=""
           className="featuredImg"
         />
-        <div className="featuredTitles">
-          {/* <h1>Mangalore</h1>
-          <h2>83 properties</h2> */}
-        </div>
+        {/* <div className="featuredTitles">
+          <h1>Chennai</h1>
+          <h2>83 properties</h2>
+        </div> */}
       </div>
-      <div className="featuredItem">
+      <div className="featuredItem" onClick={onFeaturedClick}>
         <img
-          src="https://images.unsplash.com/photo-1535827841776-24afc1e255ac?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8aG90ZWxzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=1000&q=60"
+          id="3"
+          src="https://cf.bstatic.com/xdata/images/hotel/max1280x900/235376735.jpg?k=6a88854cb0234a766f5de50865ff7f1b2b624dcab894b541c7218cd8771793bd&o=&hp=1"
           alt=""
           className="featuredImg"
         />
-        <div className="featuredTitles">
-          {/* <h1>Lucknow</h1>
-          <h2>32 properties</h2> */}
-        </div>
+        {/* <div className="featuredTitles">
+          <h1>Amsterdam</h1>
+          <h2>32 properties</h2>
+        </div> */}
       </div>
     </div>
   );
