@@ -15,8 +15,8 @@ const HotelList = () => {
   const [destination, setDestination] = useState(location.state.destination);
   const [date, setDate] = useState(location.state.date);
   const [openDate, setOpenDate] = useState(false);
-  const [options, setOptions] = useState(location.state.options);
-  const [data, setData] = useState(location.state.data);
+  const options = location.state.options;
+  const data = location.state.data;
   const [isLoading, setIsLoading] = useState(false);
   const [hotelData, setHotelData] = useState();
 
@@ -58,6 +58,7 @@ const HotelList = () => {
     };
 
     fetchHotels();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // console.log("Data =>", hotelData);
@@ -72,7 +73,11 @@ const HotelList = () => {
             <h1 className="lsTitle">Search</h1>
             <div className="lsItem">
               <label>Destination</label>
-              <input placeholder={destination} type="text" />
+              <input
+                placeholder={destination}
+                type="text"
+                onChange={(e) => setDestination(e.target.value)}
+              />
             </div>
             <div className="lsItem">
               <label>Check-in Date</label>

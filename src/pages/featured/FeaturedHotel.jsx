@@ -31,7 +31,7 @@ const FeaturedHotel = () => {
       setIsLoading(false);
     };
     fetchData();
-  }, []);
+  }, [api]);
 
   const handleOpen = (i) => {
     setSlideNumber(i);
